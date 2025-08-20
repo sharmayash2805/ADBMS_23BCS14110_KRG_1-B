@@ -1,0 +1,29 @@
+--MADE BY YASH SHARMA
+USE KRG_1B
+CREATE TABLE A (
+    EmpID INT,
+    Ename VARCHAR(20),
+    Salary INT
+);
+
+CREATE TABLE B (
+    EmpID INT,
+    Ename VARCHAR(20),
+    Salary INT
+);
+
+INSERT INTO A VALUES (1, 'xyza', 1000);
+INSERT INTO A VALUES (2, 'bcde', 300);
+
+INSERT INTO B VALUES (2, 'bcde', 400);
+INSERT INTO B VALUES (1, 'xyza', 100);
+
+SELECT EmpID, Ename, MIN(Salary) AS Salary
+FROM (
+    SELECT * FROM A
+    UNION ALL
+    SELECT * FROM B
+) merged
+GROUP BY EmpID, Ename
+ORDER BY EmpID;
+--MADE BY YASH SHARMA
